@@ -66,17 +66,20 @@ jobs:
  
       - name: Create image tag 
         id: meta 
+        working-directory: ./app
         run: | 
           SHORT_SHA=$(echo "${GITHUB_SHA}" | cut -c1-7) 
           echo "image_tag=sha-${SHORT_SHA}" >> "$GITHUB_OUTPUT" 
  
       - name: Build Docker image 
+        working-directory: ./app
         run: | 
           docker build -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.image_tag }} . 
           docker tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.image_tag }} \ 
                      ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest 
  
       - name: Push Docker image 
+        working-directory: ./app
         run: | 
           docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.image_tag }} 
           docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest 
