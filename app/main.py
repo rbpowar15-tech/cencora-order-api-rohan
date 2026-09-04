@@ -18,14 +18,4 @@ def create_order():
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
 
-# requirements.txt
-flask==3.0.3
 
-# Dockerfile
-FROM python:3.12-slim
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-COPY app ./app
-EXPOSE 8080
-CMD ["python", "app/main.py"]
