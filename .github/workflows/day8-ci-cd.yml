@@ -20,7 +20,7 @@ permissions:
  
 env: 
   REGISTRY: ghcr.io 
-  IMAGE_NAME: ${{ github.repository }} 
+  IMAGE_NAME: rbpowar15-tech/cencora-order-api-rohan
   PYTHON_VERSION: "3.12" 
  
 jobs: 
